@@ -21,8 +21,8 @@ function App() {
       <Tag />
       <h1>AutoComplete</h1>
       <AutoComplete />
-      {/* <h1>ClickToEdit</h1>
-      <ClickToEdit /> */}
+      <h1>ClickToEdit</h1>
+      <ClickToEdit />
     </div>
   );
 }
