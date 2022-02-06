@@ -5,22 +5,31 @@ function ClickToEdit() {
   const [name, setName] = useState("");
   const [age, setAge] = useState(null);
 
+  function isNumber(value) {
+    return !Number.isNaN(Number(value));
+  }
+
+  function alertMessage(message) {
+    alert(message);
+  }
+
   function onBlurName(e) {
-    if (!isNaN(e.target.value)) {
-      alert("문자만 입력가능합니다.");
-      e.target.value = "";
+    if (!isNumber(e.target.value)) {
+      setName(e.target.value);
       return;
     }
-    setName(e.target.value);
+    alertMessage("문자만 입력가능합니다.");
+    e.target.value = "";
   }
 
   function onBlurAge(e) {
-    if (isNaN(e.target.value) || !Number.isInteger(Number(e.target.value))) {
-      alert("정확한 값을 입력해주세요.");
-      e.target.value = "";
+    if (isNumber(e.target.value) && Number.isInteger(Number(e.target.value))) {
+      setAge(e.target.value);
       return;
     }
-    setAge(e.target.value);
+
+    alertMessage("정확한 값을 입력해주세요.");
+    e.target.value = "";
   }
 
   function onEnterKeyUp(e) {

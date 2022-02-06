@@ -22,7 +22,7 @@ function AutoComplete() {
     setInputVal(e.target.value);
   }
 
-  function resetInpuVal(e) {
+  function resetInpuVal() {
     setInputVal("");
   }
 
@@ -39,10 +39,14 @@ function AutoComplete() {
   }, [inputVal]);
 
   function onSearch() {
-    const newList = data.filter((item) =>
-      item.toLowerCase().includes(inputVal.toLowerCase())
+    setSerchedList(
+      data.filter(
+        (item) =>
+          item
+            .toLowerCase() //대소문자 구분 없애기
+            .includes(inputVal.toLowerCase()) // 요소포함하는 값 존재하는지 확인
+      )
     );
-    setSerchedList(newList);
   }
 
   return (
@@ -55,7 +59,7 @@ function AutoComplete() {
       </InputContainer>
       {inputVal && (
         <Dropdown>
-          {searchedList.length ? (
+          {Array.isArray(searchedList) && searchedList.length ? (
             searchedList.map((keyword, idx) => (
               <SearchedItem key={idx} onClick={() => onValueUpdate(keyword)}>
                 {keyword}

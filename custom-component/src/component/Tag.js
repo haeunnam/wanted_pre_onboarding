@@ -16,22 +16,20 @@ function Tag() {
   }
 
   function addHashTag(newTag) {
-    let newHashTagList = [...hashtagList];
-    // 중복 태그 처리
-    function isDuplicated() {
-      if (newHashTagList.find((tag) => tag === newTag)) {
-        alert("중복된 값입니다");
-        setHashtag("");
-        return true;
-      }
-    }
+    const newHashTagList = [...hashtagList];
+    setHashtag("");
 
+    // 중복 태그 처리
+    const isDuplicated = () => {
+      return newHashTagList.find((tag) => tag === newTag);
+    };
     if (isDuplicated()) {
+      alert("중복된 태그가 존재합니다.");
       return;
     }
+
     newHashTagList.push(newTag);
     setHashtagList(newHashTagList);
-    setHashtag("");
   }
 
   function removeHashtag(id) {
